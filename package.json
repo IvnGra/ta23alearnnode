@@ -1,3 +1,4 @@
+
 {
   "name": "learnnode",
   "version": "1.0.0",
@@ -16,10 +17,15 @@
     "boxen": "^8.0.1"
   },
   "devDependencies": {
+    "bulma": "^1.0.2",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
+    "nunjucks": "^3.2.4",
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3",
+    "simple-nunjucks-loader": "^3.2.0",
     "style-loader": "^4.0.0",
-    "webpack": "^5.95.0",
+    "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0"
   }
