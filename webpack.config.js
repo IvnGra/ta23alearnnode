@@ -1,30 +1,41 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import { fileURLToPath } from "url";
+import fetch from "node-fetch";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default async () => {
-  let response = await fetch("https://rickandmortyapi.com/api/character");
-  let json = await response.json();
-  let characters = json.results;
-  let pages = [];
-  characters.forEach(character => {
-    let page = new HtmlWebpackPlugin({
-      template: './src/character.njk',
-      filename: 'character_' + character.id + '.html',
-      templateParameters: {
-        character
-      },
+  // Fetch characters from page 25
+  const fetchCharacters = async (page) => {
+    const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+    const json = await response.json();
+    return json.results;
+  };
+
+  let response = await fetch('https://rickandmortyapi.com/api/character?page=7');
+
+  // Combine results and take only the first 25 characters
+  let characters = [...charactersPage7].slice(0, 7);
+
+  // Create individual pages for characters
+  let pages = characters.map((character) => {
+    return new HtmlWebpackPlugin({
+      template: "./src/character.njk",
+      filename: `character_${character.id}.html`,
+      templateParameters: { character },
     });
-    pages.push(page);
   });
+
   return {
     entry: "./src/index.js",
     output: {
       filename: "main.js",
-      path: path.resolve(import.meta.dirname, "dist"),
+      path: path.resolve(__dirname, "dist"),
     },
     devServer: {
       static: {
-        directory: path.join(import.meta.dirname, "public"),
+        directory: path.join(__dirname, "public"),
       },
       compress: true,
       port: 9000,
@@ -66,14 +77,14 @@ export default async () => {
         template: "./src/index.njk",
         templateParameters: {
           name: "Hannes",
-          characters, //characters: characters
+          characters,
         },
       }),
       new HtmlWebpackPlugin({
         filename: "about.html",
         template: "./src/about.njk",
       }),
-      ...pages
+      ...pages,
     ],
   };
 };
