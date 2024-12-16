@@ -6,19 +6,18 @@ import fetch from "node-fetch";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default async () => {
-  // Fetch characters from page 25
+  
   const fetchCharacters = async (page) => {
     const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
     const json = await response.json();
     return json.results;
   };
 
-  let response = await fetch('https://rickandmortyapi.com/api/character?page=7');
+  let response = await fetch('https://rickandmortyapi.com/api/character?page=5');
 
-  // Combine results and take only the first 25 characters
-  let characters = [...charactersPage7].slice(0, 7);
+  
+  let characters = [...charactersPage7].slice(0, 5);
 
-  // Create individual pages for characters
   let pages = characters.map((character) => {
     return new HtmlWebpackPlugin({
       template: "./src/character.njk",
@@ -76,7 +75,7 @@ export default async () => {
       new HtmlWebpackPlugin({
         template: "./src/index.njk",
         templateParameters: {
-          name: "Hannes",
+          name: "Ivan",
           characters,
         },
       }),
