@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import ItemList from './ItemList.vue';
+import { ref, computed } from 'vue';
+import ItemList from '../components/ItemList.vue';
  
 let message = ref('Hello World!');
 let i = 1;
@@ -26,7 +26,7 @@ function addItem(){
  
  
 <template>
-    <div class="container">
+    
         <div class="field has-addons">
             <div class="control">
                 <input class="input" v-model="message" @keypress.enter="addItem">
@@ -42,7 +42,7 @@ function addItem(){
             <ItemList :items='doneItems' title = "Done items"></ItemList>
             <ItemList :item="ToDoItems" title="ToDoItems"></ItemList>
         </div>
-    </div>
+    
 </template>
  
 <style></style>
