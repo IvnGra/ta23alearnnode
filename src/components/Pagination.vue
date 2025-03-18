@@ -5,7 +5,7 @@ let { info, current } = defineProps(['info', 'current']);
  
 let pageNumbers = computed(() => {
     let pages = [];
-    for (let i = 1; i<= 3; i++) {
+    for (let i = 1; i<=3 && i<=info.pages; i++) {
         pages[i] = i;
     }
     if(current > 2){
@@ -38,7 +38,8 @@ console.log(pageNumbers.value)
             <li v-for="page in pageNumbers">
               <span class="pagination-ellipsis" v-if="page === '...'">&hellip;</span>
               <a class="pagination-link is-current" aria-label="`Goto Page " aria-current="page"v-else-if="page === current">{{ page }}</a>
-              <a href="#" class="pagination-link":class="{'is-current' : current === page}" :aria-label="`Goto page ${page}`" v-else>{{ page }}</a>
+              <a @click = "$emit('page', page)" 
+              class="pagination-link":class="{'is-current' : current === page}" :aria-label="`Goto page ${page}`" v-else>{{ page }}</a>
             </li>
             <!-- <li><span class="pagination-ellipsis">&hellip;</span></li>
             <li><a href="#" class="pagination-link" aria-label="Goto page 45">45</a></li>
