@@ -57,7 +57,7 @@ async function page(page) {
 
 onMounted(() =>{
     document.addEventListener('scroll', () => {
-           if(window.scrollY + window.innerHeight === document.body.clientHeight) {
+           if(window.scrollY + window.innerHeight > document.body.clientHeight - 300) {
                 next()
            }
         });     
