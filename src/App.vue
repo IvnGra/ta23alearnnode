@@ -6,13 +6,16 @@ import Tabs from './components/Tabs.vue';
  
 <template>
     <Tabs></Tabs>
-    <div class="ontainer">
+    <div class="ontainer" v-if="$route.meta.container !== false">
         <section class="section">
             <Suspense>
                 <RouterView></RouterView>
             </Suspense>
         </section>
     </div>
+    <Suspense v-else>
+         <RouterView></RouterView>
+    </Suspense>
 </template>
 
 <style>
