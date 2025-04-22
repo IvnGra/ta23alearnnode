@@ -16,11 +16,13 @@ onMounted(() => {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
     var marker = L.marker([59.4269, 24.7438]).addTo(map);
+    var markerTwo = L.marker([59.4219, 24.7938]).addTo(map)
     var polygon = L.polygon([
     [59.4228, 24.7898],
     [59.4203, 24.7932],
     [59.4229, 24.7966]
 ]).addTo(map);
+
 });
 watch(
   () => center, (center,oldCenter) => {
