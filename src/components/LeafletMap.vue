@@ -10,12 +10,17 @@ const {center, zoom} = defineProps(['center', 'zoom'])
 const id = 'map-' + useId();
 let map;
 onMounted(() => {
-     map = L.map = L.map('map').setView(center,zoom);
+     map = L.map(id).setView(center,zoom);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
     var marker = L.marker([59.4269, 24.7438]).addTo(map);
+    var polygon = L.polygon([
+    [59.4228, 24.7898],
+    [59.4203, 24.7932],
+    [59.4229, 24.7966]
+]).addTo(map);
 });
 watch(
   () => center, (center,oldCenter) => {
@@ -33,7 +38,7 @@ watch(
     <div :id="id"></div>
 </template>
 <style scoped>
-#map { 
+div { 
     height: 90vh;
      }
 </style>
