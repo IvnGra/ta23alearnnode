@@ -31,7 +31,7 @@ characters.forEach(character => {
       directory: path.join(import.meta.dirname, 'public'),
     },
     compress: true,
-    port: 9000,
+    port: 6000,
   },
   module: {
     rules: [
