@@ -32,12 +32,9 @@
     "webpack-dev-server": "^5.1.0"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "express": "^5.1.0",
     "leaflet": "^1.9.4",
     "vue": "^3.5.13",
->>>>>>> 4d5988981e591d69e742223dbf5c07dfa032a6d0
     "vue-router": "^4.5.0"
   }
 }
